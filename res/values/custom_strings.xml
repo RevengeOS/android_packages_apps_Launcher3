@@ -33,6 +33,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <!-- Sub categories -->
     <string name="home_grid_title">Grid layout</string>
 
+    <!-- Icon packs -->
+    <string name="iconPackPackageDefault" translatable="false">""</string>
+    <string name="icon_pack">Icon pack</string>
+    <string name="icon_pack_summary">Select a custom icon pack</string>
+
     <!-- Google Feed -->
     <string name="google_feed_title">Display Google app</string>
     <string name="google_feed_summary">To the left of the main Home screen</string>
