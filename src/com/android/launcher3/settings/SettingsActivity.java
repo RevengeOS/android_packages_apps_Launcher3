@@ -74,6 +74,8 @@ public class SettingsActivity extends FragmentActivity
 
     public static final String KEY_MINUS_ONE = "pref_enable_minus_one";
 
+    public static boolean restartNeeded = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +110,7 @@ public class SettingsActivity extends FragmentActivity
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        LauncherUtils.restart(this);
+        restartNeeded = true;
     }
 
     private boolean startFragment(String fragment, Bundle args, String key) {
@@ -165,6 +167,14 @@ public class SettingsActivity extends FragmentActivity
 
             getPreferenceManager().setSharedPreferencesName(LauncherFiles.SHARED_PREFERENCES_KEY);
             setPreferencesFromResource(R.xml.launcher_preferences, rootKey);
+
+            HomeKeyWatcher mHomeKeyListener = new HomeKeyWatcher(getActivity());
+            mHomeKeyListener.setOnHomePressedListener(() -> {
+                if (restartNeeded) {
+                    LauncherUtils.restart(getActivity());
+                }
+            });
+            mHomeKeyListener.startWatch();
 
             PreferenceScreen screen = getPreferenceScreen();
             for (int i = screen.getPreferenceCount() - 1; i >= 0; i--) {
@@ -285,6 +295,9 @@ public class SettingsActivity extends FragmentActivity
                 mNotificationDotsObserver = null;
             }
             super.onDestroy();
+            if (restartNeeded) {
+                LauncherUtils.restart(getActivity());
+            }
         }
     }
 }
