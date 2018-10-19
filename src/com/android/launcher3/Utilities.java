@@ -171,7 +171,10 @@ public final class Utilities {
     }
 
     public static final String QSB_SHOW = "pref_qsb_show";
+    public static final String KEY_FEED_INTEGRATION = "pref_feed_integration";
     private static final long WAIT_BEFORE_RESTART = 250;
+
+    public static final String PACKAGE_NAME = "com.google.android.googlequicksearchbox";
 
     public static boolean isPropertyEnabled(String propertyName) {
         return Log.isLoggable(propertyName, Log.VERBOSE);
@@ -185,6 +188,10 @@ public final class Utilities {
 
     public static boolean showQsbWidget(Context context) {
          return getPrefs(context).getBoolean(QSB_SHOW, FeatureFlags.QSB_ON_FIRST_SCREEN);
+    }
+
+    public static boolean hasFeedIntegration(Context context) {
+        return getPrefs(context).getBoolean(KEY_FEED_INTEGRATION, false /* Spirit Effect */);
     }
 
     /**
