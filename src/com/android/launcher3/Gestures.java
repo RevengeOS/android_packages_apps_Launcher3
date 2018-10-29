@@ -22,6 +22,8 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.view.MenuItem;
 
 public class Gestures extends SettingsActivity implements PreferenceFragment.OnPreferenceStartFragmentCallback {
@@ -59,6 +61,14 @@ public class Gestures extends SettingsActivity implements PreferenceFragment.OnP
             actionBar=getActivity().getActionBar();
             assert actionBar != null;
             actionBar.setDisplayHomeAsUpEnabled(true);
+
+            SwitchPreference notificationsGesture = (SwitchPreference) findPreference(Utilities.PREF_NOTIFICATIONS_GESTURE);
+            notificationsGesture.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    SettingsActivity.restartNeeded = true;
+                    return true;
+                }
+            });
         }
 
         @Override
