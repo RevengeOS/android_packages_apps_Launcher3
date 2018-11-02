@@ -72,6 +72,8 @@ import com.android.launcher3.util.NoLocaleSQLiteHelper;
 import com.android.launcher3.util.PackageManagerHelper;
 import com.android.launcher3.util.Thunk;
 
+import com.revengeos.launcher.LauncherUtils;
+
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.File;
@@ -807,7 +809,7 @@ public class LauncherProvider extends ContentProvider {
                     convertShortcutsToLauncherActivities(db);
                 case 26:
                     // QSB was moved to the grid. Clear the first row on screen 0.
-                    if (FeatureFlags.QSB_ON_FIRST_SCREEN &&
+                    if (LauncherUtils.showQSB(mContext) &&
                             !LauncherDbUtils.prepareScreenZeroToHostQsb(mContext, db)) {
                         break;
                     }
