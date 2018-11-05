@@ -61,6 +61,7 @@ LOCAL_SRC_FILES := \
     $(call all-java-files-under, src_build_config) \
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
+LOCAL_RESOURCE_DIR += $(LOCAL_PATH)/res-revengeos
 
 LOCAL_PROGUARD_ENABLED := disabled
 
