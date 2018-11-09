@@ -18,12 +18,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import com.android.launcher3.LauncherAppState;
 import com.android.launcher3.LauncherModel;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
 import com.android.launcher3.util.LooperExecutor;
-
-import com.revengeos.launcher.OverlayCallbackImpl;
 
 public class LauncherUtils {
 
@@ -42,7 +41,7 @@ public class LauncherUtils {
 
     public static boolean showQSB(Context context) {
         SharedPreferences prefs = Utilities.getPrefs(context.getApplicationContext());
-        if (!hasPackageInstalled(context, OverlayCallbackImpl.SEARCH_PACKAGE)) {
+        if (!LauncherAppState.getInstanceNoCreate().isSearchAppAvailable()) {
             return false;
         }
         return prefs.getBoolean(KEY_SHOW_SEARCHBAR, true);
