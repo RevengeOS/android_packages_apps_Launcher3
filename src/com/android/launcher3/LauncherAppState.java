@@ -56,6 +56,8 @@ public class LauncherAppState {
     private HomeKeyWatcher mHomeKeyListener = null;
     private boolean mNeedsRestart;
 
+    private boolean mIsSearchAppAvailable;
+
     public static LauncherAppState getInstance(final Context context) {
         if (INSTANCE == null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -92,6 +94,8 @@ public class LauncherAppState {
         Log.v(Launcher.TAG, "LauncherAppState initiated");
         Preconditions.assertUIThread();
         mContext = context;
+
+        setSearchAppAvailable(hasPackageInstalled(LauncherTab.SEARCH_PACKAGE));
 
         mInvariantDeviceProfile = new InvariantDeviceProfile(mContext);
         mIconCache = new IconCache(mContext, mInvariantDeviceProfile);
@@ -209,5 +213,13 @@ public class LauncherAppState {
                 .acquireContentProviderClient(LauncherProvider.AUTHORITY)) {
             return (LauncherProvider) cl.getLocalContentProvider();
         }
+    }
+
+    public void setSearchAppAvailable(boolean available) {
+        mIsSearchAppAvailable = available;
+    }
+
+    public boolean isSearchAppAvailable() {
+        return mIsSearchAppAvailable;
     }
 }
