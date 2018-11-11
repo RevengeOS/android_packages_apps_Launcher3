@@ -24,4 +24,10 @@
         <item name="gIcon">@drawable/ic_super_g_color</item>
         <item name="micIcon">@drawable/ic_poodle_color</item>
     </style>
+
+    <!-- QuickSpace -->
+    <style name="QuickSpaceText">
+        <item name="android:fontFamily">@android:config/config_headlineFontFamilyMedium</item>
+    </style>
+
 </resources>

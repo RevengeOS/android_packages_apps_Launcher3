@@ -47,6 +47,9 @@
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.DEVICE_POWER" />
 
+    <!-- QuickSpace -->
+    <uses-permission android:name="com.revengeos.weather.client.READ_WEATHER" />
+
     <application
         android:backupAgent="com.android.launcher3.LauncherBackupAgent"
         android:fullBackupOnly="true"
