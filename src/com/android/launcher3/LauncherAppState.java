@@ -57,6 +57,7 @@ public class LauncherAppState {
     private boolean mNeedsRestart;
 
     private boolean mIsSearchAppAvailable;
+    private boolean mIsCalendarAppAvailable;
 
     public static LauncherAppState getInstance(final Context context) {
         if (INSTANCE == null) {
@@ -96,6 +97,7 @@ public class LauncherAppState {
         mContext = context;
 
         setSearchAppAvailable(Utilities.hasPackageInstalled(mContext, LauncherTab.SEARCH_PACKAGE));
+        setCalendarAppAvailable(Utilities.hasPackageInstalled(mContext, "com.google.android.calendar"));
 
         mInvariantDeviceProfile = new InvariantDeviceProfile(mContext);
         mIconCache = new IconCache(mContext, mInvariantDeviceProfile);
@@ -222,4 +224,13 @@ public class LauncherAppState {
     public boolean isSearchAppAvailable() {
         return mIsSearchAppAvailable;
     }
+
+    public void setCalendarAppAvailable(boolean available) {
+        mIsCalendarAppAvailable = available;
+    }
+
+    public boolean isCalendarAppAvailable() {
+        return mIsCalendarAppAvailable;
+    }
+
 }
