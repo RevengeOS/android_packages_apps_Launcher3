@@ -79,7 +79,7 @@ public class QuickSpaceView extends FrameLayout implements ValueAnimator.Animato
         mWeatherSettingsObserver.register();
         mWeatherSettingsObserver.updateLockscreenUnit();
         mWeatherClient = new WeatherClient(getContext());
-        mWeatherClient.addObserver(this);
+        mWeatherClient.addObserver(this, true /*withQuery*/);
 
         mActionReceiver = new QuickSpaceActionReceiver(context);
     }
