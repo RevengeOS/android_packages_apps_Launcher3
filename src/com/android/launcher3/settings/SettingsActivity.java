@@ -31,7 +31,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.content.Intent;
 import android.provider.Settings;
 import android.text.TextUtils;
 
@@ -51,6 +53,7 @@ import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
 import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.graphics.GridOptionsProvider;
+import com.android.launcher3.trust.TrustAppsActivity;
 import com.android.launcher3.uioverrides.plugins.PluginManagerWrapper;
 import com.android.launcher3.util.SecureSettingsObserver;
 
@@ -72,6 +75,8 @@ public class SettingsActivity extends Activity
     public static final String EXTRA_SHOW_FRAGMENT_ARGS = ":settings:show_fragment_args";
     private static final int DELAY_HIGHLIGHT_DURATION_MILLIS = 600;
     public static final String SAVE_HIGHLIGHTED_KEY = "android:preference_highlighted";
+
+    public static final String KEY_TRUST_APPS = "pref_trust_apps";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,6 +239,13 @@ public class SettingsActivity extends Activity
                     return false;
                 case DEVELOPER_OPTIONS_KEY:
                     return false;
+                case KEY_TRUST_APPS:
+                    preference.setOnPreferenceClickListener(p -> {
+                        Intent intent = new Intent(getActivity(), TrustAppsActivity.class);
+                        startActivity(intent);
+                        return true;
+                    });
+                    return true;
             }
 
             return true;
