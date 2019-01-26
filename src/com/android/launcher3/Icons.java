@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.view.MenuItem;
 
@@ -115,6 +116,15 @@ public class Icons extends SettingsActivity implements PreferenceFragment.OnPref
                     getPreferenceScreen().removePreference(iconShapeOverride);
                 }
             }
+
+            SwitchPreference allAppsLongLabels = (SwitchPreference) findPreference(
+                    Utilities.PREF_ALLAPPS_LONG_LABELS);
+            allAppsLongLabels.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                    return true;
+                }
+            });
         }
 
         @Override
