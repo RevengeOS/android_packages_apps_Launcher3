@@ -16,15 +16,12 @@
 package com.android.launcher3.quickspace;
 
 import android.animation.ValueAnimator;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.graphics.drawable.Icon;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.UserHandle;
@@ -72,21 +69,17 @@ public class QuickSpaceView extends FrameLayout implements ValueAnimator.Animato
     private boolean useMetricUnit;
 
     private QuickSpaceActionReceiver mActionReceiver;
-    private final IntentFilter locationFilter;
-    private boolean mWeatherClientAvailable;
-    private LocationManager mLocationManager;
 
     public QuickSpaceView(Context context, AttributeSet set) {
         super(context, set);
         mContext = context;
         mHandler = new Handler();
-        mLocationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         mWeatherSettingsObserver = new WeatherSettingsObserver(
               mHandler, context.getContentResolver());
+        mWeatherSettingsObserver.register();
+        mWeatherSettingsObserver.updateLockscreenUnit();
         mWeatherClient = new WeatherClient(getContext());
-        updateWeatherClient();
-        locationFilter = new IntentFilter(LocationManager.MODE_CHANGED_ACTION);
-        mContext.registerReceiver(locationReceiver, locationFilter);
+        mWeatherClient.addObserver(this, true /*withQuery*/);
 
         mActionReceiver = new QuickSpaceActionReceiver(context);
     }
@@ -184,28 +177,6 @@ public class QuickSpaceView extends FrameLayout implements ValueAnimator.Animato
         super.setPadding(0, 0, 0, 0);
     }
 
-    private boolean isLocationAvailable() {
-        return mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
-            mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    }
-
-    public void updateWeatherClient() {
-        boolean weatherClientAvailable = isLocationAvailable();
-        if (mWeatherClientAvailable == weatherClientAvailable) {
-            return;
-        }
-        if (weatherClientAvailable) {
-            mWeatherSettingsObserver.register();
-            mWeatherSettingsObserver.updateLockscreenUnit();
-            mWeatherClient.addObserver(this, true /*withQuery*/);
-        } else {
-            getContext().getContentResolver().unregisterContentObserver(mWeatherSettingsObserver);
-            mWeatherClient.removeObserver(this);
-            mWeatherInfo = null;
-        }
-        mWeatherClientAvailable = weatherClientAvailable;
-    }
-
     private class WeatherSettingsObserver extends ContentObserver {
 
         private Handler mHandler;
@@ -232,14 +203,4 @@ public class QuickSpaceView extends FrameLayout implements ValueAnimator.Animato
             useMetricUnit = Settings.System.getInt(mResolver, WEATHER_LOCKSCREEN_UNIT, 0) == 0;
         }
     }
-
-    private final BroadcastReceiver locationReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (LocationManager.MODE_CHANGED_ACTION.equals(intent.getAction())) {
-                updateWeatherClient();
-                getQuickSpaceView();
-            }
-        }
-    };
 }
