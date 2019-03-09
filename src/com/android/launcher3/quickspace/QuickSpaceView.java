@@ -74,14 +74,12 @@ public class QuickSpaceView extends FrameLayout implements ValueAnimator.Animato
         super(context, set);
         mContext = context;
         mHandler = new Handler();
-        if (WeatherClient.isAvailable(context)) {
-            mWeatherSettingsObserver = new WeatherSettingsObserver(
-                  mHandler, context.getContentResolver());
-            mWeatherSettingsObserver.register();
-            mWeatherSettingsObserver.updateLockscreenUnit();
-            mWeatherClient = new WeatherClient(getContext());
-            mWeatherClient.addObserver(this);
-        }
+        mWeatherSettingsObserver = new WeatherSettingsObserver(
+              mHandler, context.getContentResolver());
+        mWeatherSettingsObserver.register();
+        mWeatherSettingsObserver.updateLockscreenUnit();
+        mWeatherClient = new WeatherClient(getContext());
+        mWeatherClient.addObserver(this);
 
         mActionReceiver = new QuickSpaceActionReceiver(context);
     }
@@ -95,12 +93,6 @@ public class QuickSpaceView extends FrameLayout implements ValueAnimator.Animato
         boolean hasGoogleApp = LauncherAppState.getInstanceNoCreate().isSearchAppAvailable();
         boolean hasGoogleCalendar = LauncherAppState.getInstanceNoCreate().isCalendarAppAvailable();
         mClockView.setOnClickListener(hasGoogleCalendar ? mActionReceiver.getCalendarAction() : null);
-        if (!WeatherClient.isAvailable(getContext())) {
-            mWeatherContent.setVisibility(View.GONE);
-            mSeparator.setVisibility(View.GONE);
-            Log.d("QuickSpaceView", "WeatherProvider is unavailable");
-            return;
-        }
         if (mWeatherInfo == null) {
             mWeatherContent.setVisibility(View.GONE);
             mSeparator.setVisibility(View.GONE);
