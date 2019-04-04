@@ -17,72 +17,37 @@
 package com.android.launcher3;
 
 import com.android.launcher3.Launcher.LauncherOverlay;
+import com.android.launcher3.Launcher.LauncherOverlayCallbacks;
 
-import com.google.android.libraries.gsa.launcherclient.ISerializableScrollCallback;
 import com.google.android.libraries.gsa.launcherclient.LauncherClient;
+import com.google.android.libraries.gsa.launcherclient.ClientOptions;
+import com.google.android.libraries.gsa.launcherclient.LauncherClientCallbacks;
 
-public class LauncherTab implements Launcher.LauncherOverlay, ISerializableScrollCallback {
+public class LauncherTab {
 
     public static final String SEARCH_PACKAGE = "com.google.android.googlequicksearchbox";
 
     private Launcher mLauncher;
-    private LauncherClient mClient;
-    private Launcher.LauncherOverlayCallbacks mOverlayCallbacks;
-    boolean mAttached = false;
-    private int mFlags;
-    boolean mFlagsChanged = false;
+
+    private OverlayCallbackImpl mOverlayCallbacks;
+    private LauncherClient mLauncherClient;
+
+    private Workspace mWorkspace;
 
     public LauncherTab(Launcher launcher, boolean enabled) {
         mLauncher = launcher;
+        mWorkspace = launcher.getWorkspace();
+
+        updateLauncherTab(enabled);
     }
 
-    public void setClient(LauncherClient client) {
-        mClient = client;
+    protected void updateLauncherTab(boolean enabled) {
+        mOverlayCallbacks = new OverlayCallbackImpl(mLauncher);
+        mLauncherClient = new LauncherClient(mLauncher, mOverlayCallbacks, new ClientOptions(enabled ? 1 : 0));
+        mOverlayCallbacks.setClient(mLauncherClient);
     }
 
-    @Override
-    public void onServiceStateChanged(boolean overlayAttached) {
-        if (overlayAttached != mAttached) {
-            mAttached = overlayAttached;
-            mLauncher.setLauncherOverlay(overlayAttached ? this : null);
-        }
-    }
-
-    @Override
-    public void onOverlayScrollChanged(float n) {
-        if (mOverlayCallbacks != null) {
-            mOverlayCallbacks.onScrollChanged(n);
-        }
-    }
-
-    @Override
-    public void onScrollChange(float progress, boolean rtl) {
-        mClient.setScroll(progress);
-    }
-
-    @Override
-    public void onScrollInteractionBegin() {
-        mClient.startScroll();
-    }
-
-    @Override
-    public void onScrollInteractionEnd() {
-        mClient.endScroll();
-    }
-
-    @Override
-    public void setOverlayCallbacks(Launcher.LauncherOverlayCallbacks cb) {
-        mOverlayCallbacks = cb;
-    }
-
-    @Override
-    public void setPersistentFlags(int flags) {
-        flags = 8 | 16; //Always enable app drawer Google style search bar
-
-        flags &= (8 | 16);
-        if (flags != mFlags) {
-            mFlagsChanged = true;
-            mFlags = flags;
-        }
+    protected LauncherClient getClient() {
+        return mLauncherClient;
     }
 }
