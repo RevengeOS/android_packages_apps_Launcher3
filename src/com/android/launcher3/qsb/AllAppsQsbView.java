@@ -33,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.launcher3.BaseRecyclerView;
-import com.android.launcher3.Homescreen;
 import com.android.launcher3.Launcher;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
@@ -251,7 +250,7 @@ public class AllAppsQsbView extends BaseQsbView implements SearchUiManager, OnCh
     }
 
     protected void setSearchType() {
-        boolean useDefaultSearch = !Homescreen.isPackageInstalled(LauncherCallbacks.SEARCH_PACKAGE);
+        boolean useDefaultSearch = !Utilities.hasPackageInstalled(mContext, LauncherCallbacks.SEARCH_PACKAGE);
         if (mUseDefaultSearch != useDefaultSearch) {
             removeDefaultView();
             mUseDefaultSearch = useDefaultSearch;
