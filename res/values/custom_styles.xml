@@ -27,7 +27,7 @@
 
     <!-- QuickSpace -->
     <style name="QuickSpaceText">
-        <item name="android:fontFamily">@android:config/config_headlineFontFamilyMedium</item>
+        <item name="android:fontFamily">metropolis-medium</item>
     </style>
 
 </resources>
