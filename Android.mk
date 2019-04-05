@@ -176,9 +176,9 @@ LOCAL_PROGUARD_ENABLED := disabled
 
 LOCAL_PRIVATE_PLATFORM_APIS := true
 LOCAL_CERTIFICATE := platform
-LOCAL_PACKAGE_NAME := Launcher3QuickStep
+LOCAL_PACKAGE_NAME := RevengeLauncher
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3
+LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Launcher3QuickStep
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/quickstep/res
 
