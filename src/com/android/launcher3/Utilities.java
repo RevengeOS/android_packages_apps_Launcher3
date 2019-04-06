@@ -143,6 +143,7 @@ public final class Utilities {
     public static final String KEY_HIDDEN_APPS = "hidden_app";
     public static final String KEY_HIDDEN_APPS_SET = "hidden_app_set";
     public static final String PREF_NOTIFICATIONS_GESTURE = "pref_notifications_gesture";
+    public static final String PREF_SLEEP_GESTURE = "pref_sleep_gesture";
     public static final String PREF_ALLAPPS_LONG_LABELS = "pref_allapps_long_labels";
     public static final String LOCK_DESKTOP_KEY = "pref_lock_desktop";
 
@@ -156,6 +157,10 @@ public final class Utilities {
 
     public static boolean useNotificationsGesture(Context context) {
         return getPrefs(context).getBoolean(PREF_NOTIFICATIONS_GESTURE, true);
+    }
+
+    public static boolean useSleepGesture(Context context) {
+        return getPrefs(context).getBoolean(PREF_SLEEP_GESTURE, true);
     }
 
     public static boolean showDesktopLabel(Context context) {

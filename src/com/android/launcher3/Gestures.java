@@ -63,7 +63,16 @@ public class Gestures extends SettingsActivity implements PreferenceFragment.OnP
             actionBar.setDisplayHomeAsUpEnabled(true);
 
             SwitchPreference notificationsGesture = (SwitchPreference) findPreference(Utilities.PREF_NOTIFICATIONS_GESTURE);
+            SwitchPreference sleepGesture = (SwitchPreference) findPreference(Utilities.PREF_SLEEP_GESTURE);
+
             notificationsGesture.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                    return true;
+                }
+            });
+
+            sleepGesture.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     LauncherAppState.getInstanceNoCreate().setNeedsRestart();
                     return true;
