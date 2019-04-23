@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2019 RevengeOS
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- General -->
+    <string name="settings_title">Ayarlar</string>
+
+    <!-- Categories -->
+    <string name="home_category_title">Ana ekran</string>
+    <string name="home_category_summary">Klavuz düzeni, uygulama etiketleri ve alt panel</string>
+    <string name="icons_category_title">Simgeler</string>
+    <string name="icons_category_summary">Simge paketi, şekli, boyutu ve bildirim noktaları</string>
+    <string name="app_drawer_category_title">Uygulama menüsü</string>
+    <string name="app_drawer_category_summary">Uygulamaları ve uygulama menüsü etiketlerini gizle</string>
+    <string name="gestures_category_title">Hareketler</string>
+    <string name="gestures_category_summary">Çift dokunma, bildirimleri ve tümünü temizleme hareketleri</string>
+
+    <!-- Sub categories -->
+    <string name="home_grid_title">Klavuz düzeni</string>
+    <string name="icon_layout_title">Simge düzeni</string>
+
+    <!-- Icon packs -->
+    <string name="icon_pack">Simge paketi</string>
+    <string name="icon_pack_summary">Uygulama simgelerinizin görünümünü değiştirin</string>
+    <string name="icon_pack_none">Varsayılan</string>
+
+    <!-- Icon shape -->
+    <string name="icon_shape_override_label_custom">Simge şekli</string>
+    <string name="icon_shape_rounded_square">Yuvarlak kare</string>
+
+    <!-- Gestures -->
+    <string name="pref_sleep_gesture_title">Uyutma hareketi</string>
+    <string name="pref_sleep_gesture_summary">Cihazı uyumak için duvar kağıdına çift dokunun</string>
+    <string name="pref_notifications_gesture_title">Bildirim hareketi</string>
+    <string name="pref_notifications_gesture_summary">Hızlı ayarlar panelini göstermek için ana ekranda dikey olarak aşağı doğru kaydırın</string>
+
+    <!-- Google Feed -->
+    <string name="google_feed_title">Google uygulamasını görüntüle</string>
+    <string name="google_feed_summary">Ana giriş ekranının solunda</string>
+
+    <!-- Grid -->
+    <string name="num_default">Varsayılan</string>
+    <string name="number_of_columns_title">Sütun sayısı</string>
+    <string name="number_of_rows_title">Satır sayısı</string>
+    <string name="number_of_hotseat_title">Alt panel simge sayısı</string>
+    <string name="state_loading">Uygulanıyor\u2026</string>
+
+    <!-- Hidden apps -->
+    <string name="hide_app">Uygulamaları gizle</string>
+    <string name="hide_app_sum">Uygulamaları uygulama menüsünden gizle</string>
+    <string name="hide_app_selected">&#160;seçildi</string>
+    <string name="hidden_app">Tüm uygulamalar</string>
+    <string name="hide_selected">Seçili uygulamaları gizle</string>
+    <string name="more">Daha fazla</string>
+    <string name="reset_hidden_apps">Tümünü sıfırla</string>
+    <string name="reset_hidden_apps_done">Gizli uygulamalar şimdi kullanılabilir</string>
+
+    <!-- Show labels on icon -->
+    <string name="app_show_label_title">Uygulama etiketleri</string>
+    <string name="desktop_show_label_summary">Uygulama etiketlerini ana ekranda göster</string>
+    <string name="allapps_show_label_summary">Uygulama etiketlerini uygulama menüsünde göster</string>
+
+    <!-- Show quickspace -->
+    <string name="show_quickspace_title">Bir bakışta</string>
+    <string name="show_quickspace_summary">Ana ekranınızın en üstünde göster</string>
+
+    <!-- Icon labels -->
+    <string name="allapps_long_labels_title">Uzun uygulama etiketleri</string>
+    <string name="allapps_long_labels_summary">Uygulamalara iki satır kullanarak etiket görüntüleme izni verir</string>
+
+    <!-- QSB -->
+    <string name="hotseat_qsb_preferences">Tercihler</string>
+    <string name="label_search">Arama</string>
+    <string name="label_voice_search">Sesli arama</string>
+
+    <!-- Lock desktop -->
+    <string name="lock_desktop_title">Masaüstünü kilitle</string>
+    <string name="lock_desktop_summary">Ana ekranının değiştirilmesini önle</string>
+    <string name="lock_desktop_toast">Masaüstü kilitli. Devam etmek için kilidini açın.</string>
+
+</resources>
