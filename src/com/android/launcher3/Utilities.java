@@ -33,6 +33,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.DeadObjectException;
@@ -690,8 +691,15 @@ public final class Utilities {
     }
 
     public static boolean showQuickspace(Context context) {
+        if (!isLocationAvailable(context)) return false;
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(Homescreen.KEY_SHOW_QUICKSPACE, true);
+    }
+
+    private static boolean isLocationAvailable(Context context) {
+        final LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+            locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
     public static void restart(final Context context) {
