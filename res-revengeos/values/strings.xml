@@ -17,6 +17,8 @@
     <!-- Application name -->
     <string name="revengeos_app_name" translatable="false">RevengeLauncher</string>
 
+    <string name="state_loading">Applying\u2026</string>
+
     <!-- Settings -->
 
     <!-- Show searchbar -->
