@@ -49,7 +49,6 @@ import com.android.launcher3.allapps.SearchUiManager;
 import com.android.launcher3.anim.PropertySetter;
 import com.android.launcher3.graphics.TintedDrawableSpan;
 import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.views.ActivityContext;
 
 import java.util.ArrayList;
 
@@ -62,7 +61,6 @@ public class AppsSearchContainerLayout extends ExtendedEditText
 
 
     private final Launcher mLauncher;
-    private final ActivityContext mActivity;
     private final AllAppsSearchBarController mSearchBarController;
     private final SpannableStringBuilder mSearchQueryBuilder;
 
@@ -84,8 +82,7 @@ public class AppsSearchContainerLayout extends ExtendedEditText
     public AppsSearchContainerLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        mActivity = ActivityContext.lookupContext(context);
-        mLauncher = tryGetLauncher(context);
+        mLauncher = Launcher.getLauncher(context);
         mSearchBarController = new AllAppsSearchBarController();
 
         mSearchQueryBuilder = new SpannableStringBuilder();
@@ -97,14 +94,6 @@ public class AppsSearchContainerLayout extends ExtendedEditText
         setHint(prefixTextWithIcon(getContext(), R.drawable.ic_allapps_search, getHint()));
 
         setTranslationY(0);
-    }
-
-    private Launcher tryGetLauncher(Context context) {
-        try {
-            return Launcher.getLauncher(context);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
     }
 
     @Override
@@ -122,7 +111,7 @@ public class AppsSearchContainerLayout extends ExtendedEditText
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // Update the width to match the grid padding
-        DeviceProfile dp = mActivity.getDeviceProfile();
+        DeviceProfile dp = mLauncher.getDeviceProfile();
         int myRequestedWidth = getSize(widthMeasureSpec);
         int rowWidth = myRequestedWidth - mAppsView.getActiveRecyclerView().getPaddingLeft()
                 - mAppsView.getActiveRecyclerView().getPaddingRight();
@@ -221,7 +210,7 @@ public class AppsSearchContainerLayout extends ExtendedEditText
 
     @Override
     public float getScrollRangeDelta(Rect insets) {
-        if (mActivity.getDeviceProfile().isVerticalBarLayout()) {
+        if (mLauncher.getDeviceProfile().isVerticalBarLayout()) {
             return 0;
         } else {
             int topMargin = Math.round(Math.max(
