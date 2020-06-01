@@ -17,7 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="state_loading">Aplikuje se\u2026</string>
     <string name="pref_qsb_show_summary"></string>
-    <string name="pref_qsb_show_title">Zobrazit vyhledávací widget Google</string>
+    <string name="pref_qsb_show_title">Show weather widget</string>
     <!-- Google Feed -->
     <string name="settings_feed">Povolit integraci kanálu Novinek Google</string>
 </resources>
