@@ -17,7 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="state_loading">Aplicando\u2026</string>
     <string name="pref_qsb_show_summary"></string>
-    <string name="pref_qsb_show_title">Mostrar widget de búsqueda</string>
+    <string name="pref_qsb_show_title">Show weather widget</string>
     <!-- Google Feed -->
     <string name="settings_feed">Habilitar integración con el feed de Google</string>
 </resources>
