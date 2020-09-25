@@ -15,9 +15,9 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="state_loading">Applying\u2026</string>
+    <string name="state_loading">Sol·licitud\u2026</string>
     <string name="pref_qsb_show_summary"></string>
-    <string name="pref_qsb_show_title">Show weather widget</string>
+    <string name="pref_qsb_show_title">Mostra el widget del temps</string>
     <!-- Google Feed -->
-    <string name="settings_feed">Enable Google feed integration</string>
+    <string name="settings_feed">Activeu la integració del feed de Google</string>
 </resources>
