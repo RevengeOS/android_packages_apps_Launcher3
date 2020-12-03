@@ -22,8 +22,8 @@
     <!-- Settings -->
 
     <!-- Show searchbar -->
-    <string name="show_searchbar_title">Show search bar</string>
-    <string name="show_searchbar_summary">Show the search bar on the home screen</string>
+    <string name="show_searchbar_title">Show weather widget</string>
+    <string name="show_searchbar_summary">Show the weather widget at the top of the home screen</string>
 
     <!-- Settings title to show Google Now at -1 screen on launcher. [CHAR LIMIT=50] -->
     <string name="title_show_google_app">Show Google App</string>
