@@ -124,6 +124,9 @@ public final class Utilities {
      */
     public static final int EDGE_NAV_BAR = 1 << 8;
 
+    public static final String KEY_DT_GESTURE = "pref_dt_gesture";
+    public static final String KEY_NOTIFICATION_GESTURE = "pref_notification_gesture";
+
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or
      * add extra logging and not for changing the app behavior.
@@ -595,7 +598,7 @@ public final class Utilities {
             LauncherActivityInfo activityInfo = launcher.getSystemService(LauncherApps.class)
                     .resolveActivity(info.getIntent(), info.user);
             outObj[0] = activityInfo;
-            return activityInfo == null ? null : new IconProvider(launcher).getIconForUI(
+            return activityInfo == null ? null : IconProvider.INSTANCE.get(launcher).getIconForUI(
                     activityInfo, launcher.getDeviceProfile().inv.fillResIconDpi);
         } else if (info.itemType == LauncherSettings.Favorites.ITEM_TYPE_DEEP_SHORTCUT) {
             if (info instanceof PendingAddShortcutInfo) {
@@ -693,5 +696,15 @@ public final class Utilities {
     public static boolean isWorkspaceEditAllowed(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(InvariantDeviceProfile.KEY_WORKSPACE_EDIT, true);
+    }
+
+    public static boolean isNotificationGestureEnabled(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(KEY_NOTIFICATION_GESTURE, true);
+    }
+
+    public static boolean isDoubleTapGestureEnabled(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(KEY_DT_GESTURE, true);
     }
 }
