@@ -159,7 +159,7 @@ else
 endif
 LOCAL_MODULE := Launcher3QuickStepLib
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_STATIC_ANDROID_LIBRARIES := Launcher3CommonDepsLib
+LOCAL_STATIC_ANDROID_LIBRARIES := Launcher3CommonDepsLib RevengeUI-lib
 
 LOCAL_SRC_FILES := \
     $(call all-java-files-under, src) \

@@ -17,21 +17,23 @@
 <com.android.quickstep.views.OverviewActionsView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/overview_actions_height"
-    android:layout_gravity="center_horizontal|bottom">
+    android:layout_gravity="center_horizontal|bottom"
+    android:clipChildren="false">
 
     <LinearLayout
         android:id="@+id/action_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:clipChildren="false">
 
         <Space
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1" />
 
-        <ImageButton
+        <com.revengeos.revengeui.button.RevengeUIImageButton
             android:id="@+id/action_screenshot"
             style="@style/OverviewActionButton"
             android:layout_width="wrap_content"
@@ -45,7 +47,7 @@
             android:layout_height="1dp"
             android:layout_weight="1" />
 
-        <ImageButton
+        <com.revengeos.revengeui.button.RevengeUIImageButton
             style="@style/OverviewActionButton"
             android:id="@+id/clear_all"
             android:layout_width="wrap_content"
@@ -60,7 +62,7 @@
             android:layout_height="1dp"
             android:layout_weight="1" />
 
-        <ImageButton
+        <com.revengeos.revengeui.button.RevengeUIImageButton
             android:id="@+id/action_share"
             style="@style/OverviewActionButton"
             android:layout_width="wrap_content"

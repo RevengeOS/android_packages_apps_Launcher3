@@ -84,5 +84,7 @@
         <item name="android:tint">@android:color/white</item>
         <item name="android:padding">15dp</item>
         <item name="android:textAllCaps">false</item>
+        <item name="springEffect">true</item>
+        <item name="springEffectScale">1.1</item>
     </style>
 </resources>
